@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.BlankFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/includedSongItem"
+            layout="@layout/song_list_item" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/musicIconImgV"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:padding="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/no_music_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedCorner12" />
+
+            <TextView
+                android:id="@+id/musicTitle"
+                style="@style/itemTitle"
+                android:text="Hardcoded 20sp PartufaihenPartufaihenPartufaihenPartufaihenPartufaihenPartufaihen"
+                android:textSize="20.8sp"
+                app:fontFamily="@font/roboto_regular_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/musicIconImgV"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/musicSubtitle"
+                style="@style/itemSubtitle"
+                android:text="Hardcoded 18.2sp  Lipa Shmeltzer - BavLipa"
+                android:textSize="18.2sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/musicTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLay1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/musicIconImgV1"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:padding="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/no_music_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedCorner12" />
+
+            <TextView
+                android:id="@+id/musicTitle1"
+                style="@style/itemTitle"
+                android:text="Hardcoded 16sp PartufaihenPartufaihenPartufaihenPartufaihenPartufaihenPartufaihen"
+                android:textSize="20sp"
+                app:fontFamily="@font/roboto_regular_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/musicIconImgV1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/musicSubtitle1"
+                style="@style/itemSubtitle"
+                android:text="Hardcoded 14sp  Lipa Shmeltzer - BavLipa"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/musicTitle1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:text="@string/displayWidth" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            tools:text="Screen Info" />
+
+        <Button
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Navigate To List" />
+
+        <Button
+            android:id="@+id/but2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Test Crashlytics" />
+    </LinearLayout>
+</ScrollView>

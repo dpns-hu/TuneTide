@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1077676322062",
+    "project_id": "tunetide-d6c58",
+    "storage_bucket": "tunetide-d6c58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077676322062:android:0e22b4d6be594d3af2bb5f",
+        "android_client_info": {
+          "package_name": "com.tunetide.music"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvq8qhNOp6igfkFUpeIL-vlkXMvWYvdTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

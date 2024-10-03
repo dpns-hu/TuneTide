@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-5dp"
+    android:layout_marginBottom="-5dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/album_bkg_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/albumIconImgStart"
+        style="@style/AlbumImageViewStyle"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--spacer is visible when imageEnd is visible, since then the title needs more margin-->
+    <View
+        android:id="@+id/spacer8"
+        android:layout_width="8dp"
+        android:layout_height="1dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@id/albumIconImgStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/albumTitle"
+        style="@style/itemTitle"
+        android:layout_marginBottom="5dp"
+        android:ellipsize="end"
+        app:fontFamily="@font/roboto_regular_400"
+        app:layout_constraintBottom_toTopOf="@id/middleGuideline"
+        app:layout_constraintEnd_toStartOf="@id/albumIconImgEnd"
+        app:layout_constraintStart_toEndOf="@id/spacer8"
+        tools:text="PartufaihenPartufaihenPartufaihenPartufaihenPartufaihenPartufaihen" />
+
+    <TextView
+        android:id="@+id/albumSubtitle"
+        style="@style/itemSubtitle"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/albumIconImgEnd"
+        app:layout_constraintStart_toStartOf="@id/albumTitle"
+        app:layout_constraintTop_toTopOf="@id/middleGuideline"
+        tools:text="Lipa Shmeltzer - BavLipa" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/albumIconImgEnd"
+        style="@style/AlbumImageViewStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middleGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

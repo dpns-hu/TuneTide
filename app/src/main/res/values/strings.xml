@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">TuneTide</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <bool name="leak_canary_watcher_watch_dismissed_dialogs">true</bool>
+
+    <string name="agree">Agree</string>
+    <string name="cancel">Cancel</string>
+    <string name="disagree">Disagree</string>
+    <string name="download">Download</string>
+    <string name="download_music">Download music</string>
+    <string name="found_new_song">Fond new song</string>
+    <string name="need_permission_to_access">Need permission to access music and phone state.</string>
+    <string name="no_song_found">No song found</string>
+    <string name="permission_requirement">Permission requirement</string>
+    <string name="search_song">Search song</string>
+    <string name="unknown">\u003c unknown \u003e</string>
+    <string name="unsupported_format">Unsupported format</string>
+    <string name="press_again_to_exit">Press again to exit</string>
+    <string name="cant_open_browser">Can\'t open browser.</string>
+
+    <string name="displayWidth">normal</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/focus"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="16dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="12dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/musicIconImgV"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:padding="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/no_music_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedCorner12" />
+
+    <TextView
+        android:id="@+id/musicTitle"
+        style="@style/itemTitle"
+        app:fontFamily="@font/roboto_regular_400"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/musicIconImgV"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Partufaihen" />
+
+    <TextView
+        android:id="@+id/musicSubtitle"
+        style="@style/itemSubtitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/musicTitle"
+        tools:text="Lipa Shmeltzer - BavLipa" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

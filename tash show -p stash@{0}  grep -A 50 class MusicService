@@ -1,0 +1,161 @@
+[1mdiff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml[m
+[1mindex 2a60df7..cf4335c 100644[m
+[1m--- a/app/src/main/AndroidManifest.xml[m
+[1m+++ b/app/src/main/AndroidManifest.xml[m
+[36m@@ -38,22 +38,29 @@[m
+             </intent-filter>[m
+         </activity>[m
+ [m
+[31m-        <service android:name=".service.MusicService"/>[m
+[31m-        <receiver android:name=".services.CallReceiver"[m
+[31m-            android:exported="false">[m
+[32m+[m[32m        <service[m
+[32m+[m[32m            android:name=".service.MusicService"[m
+[32m+[m[32m            android:exported="true"[m
+[32m+[m[32m            android:foregroundServiceType="mediaPlayback">[m
+             <intent-filter>[m
+[31m-                <action android:name="android.intent.action.PHONE_STATE"/>[m
+[32m+[m[32m                <action android:name="androidx.media3.session.MediaSessionService" />[m
+             </intent-filter>[m
+[31m-        </receiver>[m
+[31m-        <receiver android:name=".services.MediaButtonReceiver"[m
+[31m-            android:exported="true">[m
+[31m-           <intent-filter>[m
+[32m+[m[32m        </service>[m
+[32m+[m[32m<!--        <receiver android:name=".services.CallReceiver"-->[m
+[32m+[m[32m<!--            android:exported="false">-->[m
+[32m+[m[32m<!--            <intent-filter>-->[m
+[32m+[m[32m<!--                <action android:name="android.intent.action.PHONE_STATE"/>-->[m
+[32m+[m[32m<!--            </intent-filter>-->[m
+[32m+[m[32m<!--        </receiver>-->[m
+[32m+[m[32m<!--        <receiver android:name=".services.MediaButtonReceiver"-->[m
+[32m+[m[32m<!--            android:exported="true">-->[m
+[32m+[m[32m<!--           <intent-filter>-->[m
+ [m
+[31m-               <action android:name="android.media.AUDIO_BECOMING_NOISY"/>[m
+[31m-               <action android:name="android.intent.action.HEADSET_PLUG"/>[m
+[32m+[m[32m<!--               <action android:name="android.media.AUDIO_BECOMING_NOISY"/>-->[m
+[32m+[m[32m<!--               <action android:name="android.intent.action.HEADSET_PLUG"/>-->[m
+ [m
+[31m-           </intent-filter>[m
+[31m-        </receiver>[m
+[32m+[m[32m<!--           </intent-filter>-->[m
+[32m+[m[32m<!--        </receiver>-->[m
+     </application>[m
+ [m
+ [m
+[1mdiff --git a/app/src/main/java/com/lighko/music/MainActivity.kt b/app/src/main/java/com/lighko/music/MainActivity.kt[m
+[1mindex cb897c2..121fe16 100644[m
+[1m--- a/app/src/main/java/com/lighko/music/MainActivity.kt[m
+[1m+++ b/app/src/main/java/com/lighko/music/MainActivity.kt[m
+[36m@@ -39,67 +39,67 @@[m [mclass MainActivity : AppCompatActivity() {[m
+     val musicVm: MusicViewmodel by viewModels()[m
+ [m
+ [m
+[31m-    companion object {[m
+[31m-        lateinit var musicService: MusicService[m
+[31m-        lateinit var exoPlayer: ExoPlayer[m
+[31m-        var isActiveCall = false[m
+[31m-[m
+[31m-    }[m
+[32m+[m[32m//    companion object {[m
+[32m+[m[32m//        lateinit var musicService: MusicService[m
+[32m+[m[32m//        lateinit var exoPlayer: ExoPlayer[m
+[32m+[m[32m//        var isActiveCall = false[m
+[32m+[m[32m//[m
+[32m+[m[32m//    }[m
+ [m
+     private var isServiceBound = false[m
+[31m-[m
+[31m-    private val connection = object : ServiceConnection {[m
+[31m-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {[m
+[31m-            val binder = service as MusicService.LocalBinder[m
+[31m-            musicService = binder.getService()[m
+[31m-            isServiceBound = true[m
+[31m-            // Handle playback commands[m
+[31m-            musicService?.initializePlayer((exoPlayer))[m
+[31m-[m
+[31m-            musicService.playbackState.observe(this@MainActivity, Observer {[m
+[31m-                val fragment =[m
+[31m-                    this@MainActivity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.fragments[m
+[31m-                if (it == false) {[m
+[31m-                    musicService.pauseMusic()[m
+[31m-                    fragment?.forEach {[m
+[31m-[m
+[31m-                        if (it is NowPlayingFrag) {[m
+[31m-                            it.updateUiData()[m
+[31m-[m
+[31m-                           if(isActiveCall) {[m
+[31m-                               it.binding?.playBut?.isClickable = false[m
+[31m-                               Toast.makeText(this@MainActivity, "Cannot play right now", Toast.LENGTH_SHORT).show()[m
+[31m-                           }[m
+[31m-                        } else if (it is ListFrag) {[m
+[31m-                            it.setupMiniPlayer()[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-[m
+[31m-                } else {[m
+[31m-                    musicService.resumeMusic()[m
+[31m-                    fragment?.forEach {[m
+[31m-[m
+[31m-                        if (it is NowPlayingFrag) {[m
+[31m-                            it.updateUiData()[m
+[31m-                            it.binding?.playBut?.isClickable = true[m
+[31m-                        } else if (it is ListFrag) {[m
+[31m-                            it.setupMiniPlayer()[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-            })[m
+[31m-[m
+[31m-        }[m
+[31m-[m
+[31m-        override fun onServiceDisconnected(name: ComponentName?) {[m
+[31m-            isServiceBound = false[m
+[31m-        }[m
+[31m-    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//    private val connection = object : ServiceConnection {[m
+[32m+[m[32m//        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {[m
+[32m+[m[32m//            val binder = service as MusicService.LocalBinder[m
+[32m+[m[32m//            musicService = binder.getService()[m
+[32m+[m[32m//            isServiceBound = true[m
+[32m+[m[32m//            // Handle playback commands[m
+[32m+[m[32m//            musicService?.initializePlayer((exoPlayer))[m
+[32m+[m[32m//[m
+[32m+[m[32m//            musicService.playbackState.observe(this@MainActivity, Observer {[m
+[32m+[m[32m//                val fragment =[m
+[32m+[m[32m//                    this@MainActivity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.fragments[m
+[32m+[m[32m//                if (it == false) {[m
+[32m+[m[32m//                    musicService.pauseMusic()[m
+[32m+[m[32m//                    fragment?.forEach {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                        if (it is NowPlayingFrag) {[m
+[32m+[m[32m//                            it.updateUiData()[m
+[32m+[m[32m//[m
+[32m+[m[32m//                           if(isActiveCall) {[m
+[32m+[m[32m//                               it.binding?.playBut?.isClickable = false[m
+[32m+[m[32m//                               Toast.makeText(this@MainActivity, "Cannot play right now", Toast.LENGTH_SHORT).show()[m
+[32m+[m[32m//                           }[m
+[32m+[m[32m//                        } else if (it is ListFrag) {[m
+[32m+[m[32m//                            it.setupMiniPlayer()[m
+[32m+[m[32m//                        }[m
+[32m+[m[32m//                    }[m
+[32m+[m[32m//[m
+[32m+[m[32m//                } else {[m
+[32m+[m[32m//                    musicService.resumeMusic()[m
+[32m+[m[32m//                    fragment?.forEach {[m
+[32m+[m[32m//[m
+[32m+[m[32m//                        if (it is NowPlayingFrag) {[m
+[32m+[m[32m//                            it.updateUiData()[m
+[32m+[m[32m//                            it.binding?.playBut?.isClickable = true[m
+[32m+[m[32m//                        } else if (it is ListFrag) {[m
+[32m+[m[32m//                            it.setupMiniPlayer()[m
+[32m+[m[32m//                        }[m
+[32m+[m[32m//                    }[m
+[32m+[m[32m//                }[m
+[32m+[m[32m//            })[m
+[32m+[m[32m//[m
+[32m+[m[32m//        }[m
+[32m+[m[32m//[m
+[32m+[m[32m//        override fun onServi

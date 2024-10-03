@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extraLargeFontSize">39sp</dimen>
+    <dimen name="bigFontSize">26sp</dimen>
+    <dimen name="regularFontSize">20.8sp</dimen>
+    <dimen name="smallFontSize">18.2sp</dimen>
+    <dimen name="extraSmallFontSize">15.6sp</dimen>
+</resources>
